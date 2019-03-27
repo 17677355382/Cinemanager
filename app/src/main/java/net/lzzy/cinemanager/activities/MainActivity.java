@@ -16,6 +16,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import net.lzzy.cinemanager.R;
+import net.lzzy.cinemanager.fragments.AddCinemasFragment;
+import net.lzzy.cinemanager.fragments.AddOrdersFragment;
 import net.lzzy.cinemanager.fragments.CinemasFragment;
 import net.lzzy.cinemanager.fragments.OrdersFragment;
 
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         setTitleMenu();
     }
+
+
+
 
     /** 自定义标题栏 **/
     private void setTitleMenu() {
@@ -85,13 +90,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Fragment createFragment(int id) {
         switch (id) {
             case R.id.bar_title_tv_add_cinema:
+                return new AddCinemasFragment();
 
-                break;
             case R.id.bar_title_tv_view_cinema:
                 return new CinemasFragment();
-            case R.id.bar_title_tv_add_order:
 
-                break;
+            case R.id.bar_title_tv_add_order:
+                return new AddOrdersFragment();
+
             case R.id.bar_title_tv_view_order:
                 return new OrdersFragment();
 
