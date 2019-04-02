@@ -4,13 +4,11 @@ package net.lzzy.cinemanager.fragments;
 import android.content.Context;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.lljjcoder.Interface.OnCityItemClickListener;
 import com.lljjcoder.bean.CityBean;
 import com.lljjcoder.bean.DistrictBean;
 import com.lljjcoder.bean.ProvinceBean;
 import com.lljjcoder.style.cityjd.JDCityPicker;
-
 import net.lzzy.cinemanager.R;
 import net.lzzy.cinemanager.models.Cinema;
 

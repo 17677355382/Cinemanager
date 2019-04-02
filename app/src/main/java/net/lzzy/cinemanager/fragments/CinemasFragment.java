@@ -2,7 +2,6 @@ package net.lzzy.cinemanager.fragments;
 
  import android.text.TextUtils;
  import android.view.View;
-
  import android.widget.ListView;
  import net.lzzy.cinemanager.R;
  import net.lzzy.cinemanager.models.Cinema;
