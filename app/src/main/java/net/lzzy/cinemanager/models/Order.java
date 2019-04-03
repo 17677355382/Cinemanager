@@ -1,5 +1,8 @@
 package net.lzzy.cinemanager.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import net.lzzy.sqllib.Ignored;
 import net.lzzy.sqllib.Sqlitable;
 import net.lzzy.sqllib.Table;
@@ -11,7 +14,7 @@ import java.util.UUID;
  * Description:
  */
 @Table(name = "Orders")
-public class Order extends BaseEntity implements Sqlitable {
+public class Order extends BaseEntity implements Sqlitable , Parcelable {
     @Ignored
     static final String COL_MOVIE = "movie";
     @Ignored
@@ -60,5 +63,15 @@ public class Order extends BaseEntity implements Sqlitable {
     @Override
     public boolean needUpdate() {
         return false;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

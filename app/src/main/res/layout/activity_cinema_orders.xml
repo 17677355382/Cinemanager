@@ -4,13 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    android:id="@+id/fragment_cinema_orders"
+    tools:context=".activities.CinemaOrdersActivity">
 
-    <FrameLayout android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-<include layout="@layout/bar_title"/>
 </FrameLayout>

@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.View;
@@ -11,6 +13,9 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import com.lljjcoder.Interface.OnCityItemClickListener;
+
 import net.lzzy.cinemanager.R;
 import net.lzzy.cinemanager.fragments.AddCinemasFragment;
 import net.lzzy.cinemanager.fragments.AddOrdersFragment;
@@ -22,12 +27,17 @@ import net.lzzy.cinemanager.models.Cinema;
 import net.lzzy.cinemanager.models.Order;
 import net.lzzy.cinemanager.utils.ViewUtils;
 
+import static net.lzzy.cinemanager.fragments.AddOrdersFragment.*;
+
 /**
  * @author Administrator
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,
-            OnFragmentInteractionListener,AddCinemasFragment.onCinemaCreatedListener,AddOrdersFragment.OnOrderCreatedListener{
+            OnFragmentInteractionListener,AddCinemasFragment.onCinemaCreatedListener,
+            AddOrdersFragment.OnOrderCreatedListener,
+            CinemasFragment.OnCinemaSeletedListener {
 
+    public static final String EXTRA_CINEMA_ID = "cinemaId";
     private FragmentManager manager=getSupportFragmentManager();
     private LinearLayout layoutMenu;
     private TextView tvTitle;
@@ -35,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SparseArray<Fragment> fragmentArray=new SparseArray<>();
 
     private SparseArray<String> titleArray=new SparseArray<>();
-    public static final String EXTRA_CINEMA_ID="CINEMA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         ((BaseFragment) fragment).search(kw);
                     }
                 }
-                return false;
+                return true;
             }
         });
         /** 第一次进入，加载的首个Fragment **/
@@ -177,7 +186,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void cancelAddOrder() {
-        hideAndShow(R.id.bar_title_tv_add_order,R.id.bar_title_tv_view_order);
+        hideAndShow(R.id.bar_title_tv_add_order,
+                R.id.bar_title_tv_view_order);
         search.setVisibility(View.VISIBLE);
     }
 
@@ -200,5 +210,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.hide(addOrderFragment).show(ordersFragment).commit();
         tvTitle.setText(titleArray.get(R.id.bar_title_tv_view_order));
         search.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onCinemaSelected(String cinemaId) {
+        Intent intent=new Intent(this,CinemaOrdersActivity.class);
+        intent.putExtra(EXTRA_CINEMA_ID,cinemaId);
+        startActivity(intent);
     }
 }
